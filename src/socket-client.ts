@@ -5,6 +5,8 @@ let socket: Socket;
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export const connectToServer = (token: string) => {
+  console.log({ apiUrl });
+
   const manager = new Manager(`${apiUrl}/socket.io/socket.io.js`, {
     extraHeaders: {
       hola: 'mundo',
