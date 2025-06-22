@@ -2,17 +2,30 @@ import { Manager, Socket } from 'socket.io-client';
 
 let socket: Socket;
 
+// const apiUrl = import.meta.env.VITE_API_URL;
+
 export const connectToServer = (token: string) => {
-  const manager = new Manager('http://localhost:3000/socket.io/socket.io.js', {
+  const manager = new Manager(`https://nest-shop-zfsc.onrender.com/socket.io/socket.io.js`, {
     extraHeaders: {
       hola: 'mundo',
       authentication: token
     }
   });
 
+  // Crear el Manager SIN auth
+  // const manager = new Manager('https://nest-shop-zfsc.onrender.com', {
+  //   transports: ['websocket']
+  // });
+
   socket?.removeAllListeners();
+
   socket = manager.socket('/');
 
+  // socket = manager.socket('/', {
+  //   auth: {
+  //     token
+  //   }
+  // });
   addListerners();
 };
 
